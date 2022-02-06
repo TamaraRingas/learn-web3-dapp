@@ -23,7 +23,15 @@ export default async function transfer(
     const assetID = binTools.cb58Encode(assetInfo.assetID);
 
     // Create a new transaction
-    const transaction = await chain.buildBaseTx(undefined);
+    // Create a new transaction
+    const transaction = await chain.buildBaseTx(
+      utxos, // Unspent transaction outputs
+      new BN(navax), // Transaction amount, formatted as a BigNumber
+      assetID, // AVAX asset
+      [recipient], // Addresses we are sending the funds to (receiver)
+      [address], // Addresses being used to send the funds from the UTXOs provided (sender)
+      [address], // Addresses that can spend the change remaining from the spent UTXOs (payer)
+    );
 
     // Sign the transaction and send it to the network
     undefined;
