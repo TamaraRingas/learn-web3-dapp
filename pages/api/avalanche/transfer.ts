@@ -34,8 +34,8 @@ export default async function transfer(
     );
 
     // Sign the transaction and send it to the network
-    undefined;
-    undefined;
+    const signedTx = transaction.sign(keychain);
+    const hash = await chain.issueTx(signedTx);
 
     res.status(200).json(hash);
   } catch (error) {
