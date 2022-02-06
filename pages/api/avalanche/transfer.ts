@@ -12,10 +12,10 @@ export default async function transfer(
     const chain = client.XChain();
     const keychain = chain.keyChain();
     // Using keychain, load the private key to sign transactions
-    undefined;
+    keychain.importKey(secret);
 
     // Fetch UTXOs (unspent transaction outputs)
-    const {utxos} = undefined;
+    const {utxos} = await chain.getUTXOs(address);
 
     // Determine the real asset ID from its symbol/alias
     const binTools = BinTools.getInstance();
