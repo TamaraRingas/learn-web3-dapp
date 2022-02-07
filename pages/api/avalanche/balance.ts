@@ -16,7 +16,7 @@ export default async function balance(
   res: NextApiResponse<string>,
 ) {
   try {
-    const {network, address} = req.body;
+    const {address, network} = req.body;
     const client = getAvalancheClient(network);
     const chain = client.XChain();
     const balance = (await chain.getBalance(address, 'AVAX')) as BalanceT;
